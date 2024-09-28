@@ -1,0 +1,42 @@
+{% extends "auctions/layout.html" %}
+
+
+{#Page Principale: Affichage des enchers disponibles#}
+
+{% block body %}
+
+
+<h2>Active Listings</h2>
+
+{# Selection des option de catrgories #}
+<form action = "{% url 'displayCategory' %}" method="POST" class="my-3">
+	{% csrf_token %}
+    <label for="category">Choose a category:</label>
+    <select name="category" id="category">
+        {% for cat in categories %}
+        <option value="{{ cat }}">{{ cat }}</option>
+        {% endfor %} 
+    </select>
+    <button type="submit" class="btn btn-warning">Select</button>
+
+</form>
+
+
+{# les articles #}
+
+{% for listing in listings %}
+
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="{% url 'listing' id=listing.id %}" class="btn btn-primary">Detail</a>
+  </div>
+</div>
+
+{% endfor %}
+
+
+
+{% endblock %}
