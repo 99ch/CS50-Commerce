@@ -11,23 +11,22 @@
 
 {# les articles #}
 
-
-<div classs="row mx-3">
-	{% for listing in listings %}
-
-	<div class="card" style="width: 18rem;">
-		<img src="..." class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			<a href="{% url 'listing' id=listing.id %}" class="btn btn-primary">Detail</a>
-		</div>
-	</div>
-
-	{% endfor %}
+{# les articles #}
+<div class="row mx-3">
+    {% for listing in listings %}
+    <div class="card mx-3" style="width:18rem;">    
+        <img src="{{ listing.imageUrl }}" class="card-img-top" alt="{{ listing.title }}">
+  <div class="card-body">
+      <h5 class="card-title"> {{ listing.title }} </h5>
+    <p class="card-text"> {{ listing.description }} </p>
+    <a href="{% url 'listing' id=listing.id %}" class="btn btn-primary">Detail</a>
 </div>
+    </div>
 
 
+{% endfor %}
+
+</div>
 
 
 
