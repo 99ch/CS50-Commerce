@@ -30,7 +30,8 @@
             <h2 class="text-dark font-weight-bold">{{ listing.title }}</h2>
             <p class="text-muted">Owner: <strong>{{ listing.owner }}</strong></p>
             <p>{{ listing.description }}</p>
-            <h4 class="text-primary">${{ listing.price.bid }}</h4>
+            <h3 class="text-primary">Starting Price: ${{ listing.starting_price }}</h3>  {# Affichage du prix de départ #}
+            <h3 class="text-primary">Current Bid: ${{ listing.price.bid }}</h3> {# Affichage de l'enchère actuelle #}
 
             {# Boutons d'action pour Watchlist et Close Auction #}
             {% if user.is_authenticated and listing.isActive %}

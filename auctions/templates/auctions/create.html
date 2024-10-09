@@ -1,56 +1,40 @@
+
 {% extends "auctions/layout.html" %}
 
 {# Page de création de formulaire #}
 
 {% block body %}
 
-<div class="container my-5">
-    <h2 class="text-center mb-4">Create New Listing</h2>
+    <h2>Create New Listing</h2>
 
-    <form action="{% url 'create' %}" method="POST" class="p-4 shadow-sm bg-light rounded">
+    <form action="{% url 'create' %}" method="POST">
         {% csrf_token %}
-        
-        <!-- Titre -->
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" name="title" class="form-control" id="title" placeholder="Enter title" required>
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
         </div>
-
-        <!-- Description -->
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea name="description" class="form-control" id="description" rows="3" placeholder="Enter description" required></textarea>
+            <label for="description">Description</label>
+            <textarea name="description" class="form-control" id="description" placeholder="Description" required></textarea>
         </div>
-
-        <!-- URL de l'image -->
         <div class="mb-3">
-            <label for="imageurl" class="form-label">Image URL</label>
-            <input type="url" name="imageurl" class="form-control" id="imageurl" placeholder="Enter image URL" required>
+            <label for="imageurl">Image URL</label>
+            <input type="text" name="imageurl" class="form-control" id="imageurl" placeholder="Image URL" required>
         </div>
-
-        <!-- Prix -->
         <div class="mb-3">
-            <label for="price" class="form-label">Price ($)</label>
-            <input type="number" name="price" class="form-control" id="price" placeholder="Enter price" min="0" step="0.01" required>
+            <label for="starting_price">Starting Price</label>
+            <input type="number" name="starting_price" class="form-control" id="starting_price" placeholder="Starting Price" required>
         </div>
-
-        <!-- Catégorie -->
         <div class="mb-3">
-            <label for="category" class="form-label">Choose a category:</label>
-            <select name="category" class="form-select" id="category" required>
-                <option value="" disabled selected>Select category</option>
-                {% for cat in categories %}
-                <option value="{{ cat }}">{{ cat }}</option>
+            <label for="category">Category</label>
+            <select name="category" class="form-control" id="category" required>
+                {% for category in categories %}
+                    <option value="{{ category.categoryName }}">{{ category.categoryName }}</option>
                 {% endfor %}
             </select>
         </div>
-
-        <!-- Bouton de soumission -->
-        <div class="text-center">
-            <button type="submit" class="btn btn-success w-100">Create New Listing</button>
-        </div>
+        <button type="submit" class="btn btn-primary">Create Listing</button>
     </form>
-</div>
 
 {% endblock %}
 
